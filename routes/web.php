@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +17,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Laravel 8(new)
-Route::get('/products', [ProductsController::class, 'index']);
+Route::get('/products',
+    [ProductsController::class, 'index'])->name('products');
 Route::get('/products/about', [ProductsController::class, 'about']);
+
+Route::get('/', [PagesController::class, 'index']);
+Route::get('/about', [PagesController::class, 'about']);
+
+Route::get('/posts', [PostController::class, 'index']);
+
 
 // Pattern is integer
 // Route::get('/products/{id}', [ProductsController::class, 'show'])->where('id', '[0-9]+');
@@ -24,10 +33,10 @@ Route::get('/products/about', [ProductsController::class, 'about']);
 //  Pattern is a string
 // Route::get('/products/{name}', [ProductsController::class, 'show'])->where('name', '[A-Z]+');
 
-Route::get('/products/{name}/{id}', [ProductsController::class, 'show'])->where([
-    'name' => '[a-zA-Z]+',
-    'id' => '[0-9]+'
-]);
+// Route::get('/products/{name}/{id}', [ProductsController::class, 'show'])->where([
+//     'name' => '[a-zA-Z]+',
+//     'id' => '[0-9]+'
+// ]);
 
 
 //Laravel 8(also new)
